@@ -19,6 +19,8 @@ export const toyService = {
 
 function query(filterBy) {
   console.log("filterBy",filterBy);
+  if(filterBy.labels && filterBy.labels.length>0) filterBy = {...filterBy,labels:filterBy.labels.join(',')};
+  console.log(filterBy,"after");
   return httpService.get(BASE_URL, filterBy)
 }
 
@@ -45,7 +47,7 @@ function getLabels() {
 }
 
 function getDefaultFilter(){
-  return {name:'', inStock: false, labels:''} 
+  return {name:'', inStock: false, labels:[]} 
 }
 
 function getEmptyToy() {

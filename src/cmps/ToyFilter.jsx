@@ -3,23 +3,6 @@ import { useEffect, useRef, useState } from "react"
 import { utilService } from "../services/util.service.js"
 import { toyService } from "../services/toy.service.js"
 
-// const [selectedOption, setSelectedOption] = useState(null);
-//   const [filterByToEdit, setFilterByToEdit] = useState({})
-//   const options = [
-//     { value: 'chocolate', label: 'Chocolate' },
-//     { value: 'strawberry', label: 'Strawberry' },
-//     { value: 'vanilla', label: 'Vanilla' },
-//   ];
-//   function handleChange(e) {
-//     console.log(e);
-//     setSelectedOption(Array.isArray(e) ? e.map(x => x.value) : []);
-//     setFilterByToEdit((prevFilter) => ({ ...prevFilter,labels:Array.isArray(e) ? e.map(x => x.value) : []  }))
-//   }
-//   useEffect(()=>{
-// console.log(selectedOption);
-// console.log(filterByToEdit);
-//   },[filterByToEdit])
-
 export function ToyFilter({ filterBy, onSetFilter }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState({...filterBy})
