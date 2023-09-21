@@ -1,6 +1,7 @@
 import { Route, HashRouter as Router, Routes } from "react-router-dom"
 import { Provider } from 'react-redux'
 
+
 import { About } from "./pages/About.jsx"
 import { Home } from "./pages/Home.jsx"
 import { ToyDetails } from "./pages/ToyDetails.jsx"
@@ -16,6 +17,7 @@ export  function App() {
       <Router>
         <section className="main-layout app">
           <AppHeader />
+         
           <main>
             <Routes>
               <Route element={<Home />} path="/" />

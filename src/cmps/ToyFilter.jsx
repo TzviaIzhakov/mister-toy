@@ -1,17 +1,36 @@
-
+import Select from 'react-select';
 import { useEffect, useRef, useState } from "react"
 import { utilService } from "../services/util.service.js"
 import { toyService } from "../services/toy.service.js"
 
+// const [selectedOption, setSelectedOption] = useState(null);
+//   const [filterByToEdit, setFilterByToEdit] = useState({})
+//   const options = [
+//     { value: 'chocolate', label: 'Chocolate' },
+//     { value: 'strawberry', label: 'Strawberry' },
+//     { value: 'vanilla', label: 'Vanilla' },
+//   ];
+//   function handleChange(e) {
+//     console.log(e);
+//     setSelectedOption(Array.isArray(e) ? e.map(x => x.value) : []);
+//     setFilterByToEdit((prevFilter) => ({ ...prevFilter,labels:Array.isArray(e) ? e.map(x => x.value) : []  }))
+//   }
+//   useEffect(()=>{
+// console.log(selectedOption);
+// console.log(filterByToEdit);
+//   },[filterByToEdit])
 
 export function ToyFilter({ filterBy, onSetFilter }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState({...filterBy})
-
+    const [selectedOption, setSelectedOption] = useState(null);
+    const options = useRef(getOptions())
+    console.log(options.current[0]);
     onSetFilter = useRef(utilService.debounce(onSetFilter))
  
     useEffect(() => {
         onSetFilter.current(filterByToEdit)
+        console.log("filterByToEdit", filterByToEdit);
     }, [filterByToEdit])
 
 
@@ -33,8 +52,17 @@ export function ToyFilter({ filterBy, onSetFilter }) {
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
       }
 
-      
+    function handleChangeForLabels(e) {
+    setFilterByToEdit((prevFilter) => ({ ...prevFilter,labels:Array.isArray(e) ? e.map(x => x.value) : []  }))
+    }
+
+      function getOptions(){
+        let labels = toyService.getLabels();
+        return [labels.map(labelFromService=>({value: labelFromService.toLowerCase(), label:labelFromService}))]
+      }
+
     return (
+
         <section className="car-filter full main-layout">
             <h2>Toys Filter</h2>
             <form >
@@ -56,10 +84,13 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                 />
                 <label htmlFor="labels">By Labels:</label>
 
-                <select name="labels" id="labels" onChange={handleChange}>
+                {/* <select name="labels" id="labels" onChange={handleChange}>
                     <option value="">Select labels</option>
                   {toyService.getLabels().map((l,i)=><option key={i} value={l}>{l}</option>)}
-                </select>
+                </select> */}
+
+                 <Select defaultValue={selectedOption}  options={options.current[0]} isMulti onChange={handleChangeForLabels}
+                />
 
             </form>
 
