@@ -40,7 +40,7 @@ export function ToyIndex() {
         console.log(filterBy,"oo");
         dispatch({ type: SET_FILTER_BY, filterBy })
     }
-
+console.log("toys",toys);
     return (
         <div>
             <h3>Toys App</h3>
