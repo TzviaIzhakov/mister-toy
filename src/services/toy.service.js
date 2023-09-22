@@ -14,13 +14,12 @@ export const toyService = {
   remove,
   getEmptyToy,
   getLabels,
-  getDefaultFilter
+  getDefaultFilter,
+  getPriceByLabel
 };
 
 function query(filterBy) {
-  console.log("filterBy",filterBy);
   if(filterBy.labels && filterBy.labels.length>0) filterBy = {...filterBy,labels:filterBy.labels.join(',')};
-  console.log(filterBy,"after");
   return httpService.get(BASE_URL, filterBy)
 }
 
@@ -59,6 +58,21 @@ function getEmptyToy() {
     createdAt: Date.now(),
     inStock: false,
   };
+}
+
+function getPriceByLabel(label) {
+  toyService.query({})
+  .then(toys => {
+   toys = toys.filter(toy=>toy.labels.includes(label))
+   let sum = toys.reduce((acc,toy)=>{
+    return acc+toy.price
+   },0)
+   return sum/toys.length
+  })
+  .catch(err => {
+      console.log('toy action -> Cannot load toys', err)
+      throw err
+  })
 }
 
 // TEST DATA

@@ -8,12 +8,10 @@ export function ToyFilter({ filterBy, onSetFilter }) {
     const [filterByToEdit, setFilterByToEdit] = useState({...filterBy})
     const [selectedOption, setSelectedOption] = useState(null);
     const options = useRef(getOptions())
-    console.log(options.current[0]);
     onSetFilter = useRef(utilService.debounce(onSetFilter))
  
     useEffect(() => {
         onSetFilter.current(filterByToEdit)
-        console.log("filterByToEdit", filterByToEdit);
     }, [filterByToEdit])
 
 

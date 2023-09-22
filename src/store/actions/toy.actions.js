@@ -1,5 +1,5 @@
 import {toyService } from "../../services/toy.service.js";
-import { ADD_TOY, TOY_UNDO, REMOVE_TOY, SET_TOYS, SET_IS_LOADING, UPDATE_TOY } from "../reducers/toy.reducer.js";
+import { ADD_TOY, REMOVE_TOY, SET_TOYS, SET_IS_LOADING, UPDATE_TOY, SET_TOYS_INITIAL } from "../reducers/toy.reducer.js";
 import { store } from "../store.js";
 
 export function loadToys() {
@@ -16,6 +16,29 @@ export function loadToys() {
         .finally(() => {
             store.dispatch({ type: SET_IS_LOADING, isLoading: false })
         })
+}
+
+export function loadToysAll(label,toysInital) {
+   console.log(toysInital,"toysInital");
+     let toysLoad = toysInital.filter(toy=>{
+       return  toy.labels.includes(label)
+    })
+     let sum = toysLoad.reduce((acc,toy)=>{
+      return acc+toy.price
+     },0)
+     return sum/toysInital.length
+}
+
+
+export function loadInitalToys() {
+    return toyService.query({})
+    .then(toys => {
+        store.dispatch({ type: SET_TOYS_INITIAL, toys })
+    })
+    .catch(err => {
+        console.log('toy action -> Cannot load toys', err)
+        throw err
+    })
 }
 
 export function removeToy(toyId) {

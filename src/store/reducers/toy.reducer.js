@@ -5,7 +5,7 @@ export const REMOVE_TOY = 'REMOVE_TOY'
 
 export const ADD_TOY = 'ADD_TOY'
 export const UPDATE_TOY = 'UPDATE_TOY'
-
+export const SET_TOYS_INITIAL = "SET_TOYS_INITIAL"
 export const SET_FILTER_BY = 'SET_FILTER_BY'
 export const SET_IS_LOADING = 'SET_IS_LOADING'
 
@@ -15,7 +15,8 @@ const initialState = {
     toys: [],
     lastToys: [],
     filterBy: toyService.getDefaultFilter(),
-    isLoading: false
+    isLoading: false,
+    toysInitial: []
 }
 
 export function toyReducer(state = initialState, action = {}) {
@@ -51,6 +52,9 @@ export function toyReducer(state = initialState, action = {}) {
         case SET_IS_LOADING:
             return { ...state, isLoading: action.isLoading }
 
+        case SET_TOYS_INITIAL:
+            console.log(action.toys,"action.toys");
+            return { ...state, toysInitial: action.toys}
         default:
             return state;
     }

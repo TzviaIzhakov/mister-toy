@@ -6,13 +6,16 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 import { SET_FILTER_BY } from '../store/reducers/toy.reducer.js'
 import { ToyList } from '../cmps/ToyList.jsx'
-import { loadToys, removeToyOptimistic} from '../store/actions/toy.actions.js'
+import { loadInitalToys, loadToys, removeToyOptimistic} from '../store/actions/toy.actions.js'
 import { ToyFilter } from '../cmps/ToyFilter.jsx'
+import { toyService } from '../services/toy.service.js'
+import { MyChart } from '../cmps/MyChart.jsx'
 
 export function ToyIndex() {
 
     const dispatch = useDispatch()
     const toys = useSelector(storeState => storeState.toyModule.toys)
+   
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
     const isLoading = useSelector(storeState => storeState.toyModule.isLoading)
 
@@ -20,7 +23,7 @@ export function ToyIndex() {
         loadToys()
             .catch(err => {
                 console.log('err:', err)
-                showErrorMsg('Cannot load cars')
+                showErrorMsg('Cannot load toys')
             })
     }, [filterBy])
 
@@ -37,10 +40,9 @@ export function ToyIndex() {
     }
 
     function onSetFilter(filterBy) {
-        console.log(filterBy,"oo");
         dispatch({ type: SET_FILTER_BY, filterBy })
     }
-console.log("toys",toys);
+
     return (
         <div>
             <h3>Toys App</h3>
@@ -48,10 +50,15 @@ console.log("toys",toys);
                 <button><Link to="/toy/edit">Add Toy</Link></button>
                 <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
 
-                {!isLoading && <ToyList
+                {!isLoading &&
+                <section>
+    `           <ToyList
                     toys={toys}
                     onRemoveToy={onRemoveToy}
                 />
+                  <MyChart/>
+                </section> 
+               
                 }
 
                 {isLoading && <div>Loading...</div>}
