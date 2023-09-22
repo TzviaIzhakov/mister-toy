@@ -19,7 +19,6 @@ export function loadToys() {
 }
 
 export function loadToysAll(label,toysInital) {
-   console.log(toysInital,"toysInital");
      let toysLoad = toysInital.filter(toy=>{
        return  toy.labels.includes(label)
     })
@@ -29,6 +28,13 @@ export function loadToysAll(label,toysInital) {
      return sum/toysInital.length
 }
 
+export function loadToysByStock(label,toysInital) {
+    let toysLoad = toysInital.filter(toy=>{
+      return  toy.labels.includes(label)
+   })
+   let toysByStock  = toysLoad.filter(toy=> toy.inStock)
+   return toysByStock.length/toysLoad.length * 100
+}
 
 export function loadInitalToys() {
     return toyService.query({})

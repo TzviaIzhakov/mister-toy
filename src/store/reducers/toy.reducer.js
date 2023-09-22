@@ -53,7 +53,6 @@ export function toyReducer(state = initialState, action = {}) {
             return { ...state, isLoading: action.isLoading }
 
         case SET_TOYS_INITIAL:
-            console.log(action.toys,"action.toys");
             return { ...state, toysInitial: action.toys}
         default:
             return state;

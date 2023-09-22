@@ -56,7 +56,9 @@ export function ToyIndex() {
                     toys={toys}
                     onRemoveToy={onRemoveToy}
                 />
+                {/* <div style={{width:'14em'}}> */}
                   <MyChart/>
+                {/* </div> */}
                 </section> 
                
                 }
