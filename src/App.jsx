@@ -11,12 +11,22 @@ import { AppHeader } from "./cmps/AppHeader.jsx"
 import { store } from './store/store'
 import './assets/style/main.css'
 
+import { useEffect, useState } from "react"
+
 export  function App() {
+
+  // const handleChange = (ev) => {
+  //   // setAge(ev.target.value);
+  //   setFilter(prev=>({...prev,[ev.target.name]:ev.target.value}))
+  // };
+
   return (
     <Provider store={store}>
       <Router>
         <section className="main-layout app">
+ 
           <AppHeader />
+        
           <main>
             <Routes>
               <Route element={<Home />} path="/" />

@@ -43,6 +43,8 @@ export function ToyIndex() {
         dispatch({ type: SET_FILTER_BY, filterBy })
     }
 
+    
+
     return (
         <div>
             <h3>Toys App</h3>

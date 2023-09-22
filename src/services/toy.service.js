@@ -46,7 +46,7 @@ function getLabels() {
 }
 
 function getDefaultFilter(){
-  return {name:'', inStock: false, labels:[]} 
+  return {name:'', inStock: '', labels:[]} 
 }
 
 function getEmptyToy() {

@@ -8,7 +8,6 @@ export function ToyPreview({ toy }) {
             <p>Price: <span>${toy.price.toLocaleString()}</span></p>
             <p>Is in Stock?: <span>{toy.inStock ? 'yes' : 'no'}</span></p>
             <p>labels: {toy.labels.map(l=><span key={l}>{l} {' '}</span>)}</p>
-            <hr />
             <button><Link to={`/toy/${toy._id}`}>Details</Link></button>
         </article>
     )
