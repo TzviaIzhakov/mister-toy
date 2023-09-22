@@ -1,31 +1,61 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import GoogleMapReact from 'google-map-react';
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+// const AnyReactComponent = ({ text }) => <div style={{fontSize:'40px'}}>{text}</div>;
 
 export function GoogleMap() {
 
-    const [coordinates, setCoordinates] = useState({ lat: 32.0853, lng: 34.7818 })
+    const [map, setMap] = useState()
     const zoom = 11
+    const coordinates = [ {lat:32.089870,
+        lng:34.880451},{lat:32.085300,lng:34.781769},{lat:31.768318,lng:35.213711}
+    ]
 
-
-    function handleClick({ lat, lng }) {
-        setCoordinates({ lat, lng })
+    function handleClick(e) {
+        const { lat, lng } = e
+        console.log(map);
+        map.setCenter({ lat, lng })
     }
 
+    const handleApiLoaded = (map, maps) => {
+        setMap(map)
+        coordinates.map(c=>new maps.Marker({
+          position: c,
+          map: map,
+          title: "Marker"
+        }));
+      };
+
+    useEffect(()=>{
+        console.log(map);
+    },[map])
+
     return (
-        // Important! Always set the container height explicitly
-        <div style={{ height: '100vh', width: '100%' }}>
-            <GoogleMapReact
+        <div style={{ height: '50vh', width: '100%' }}>
+            <GoogleMapReact 
                 bootstrapURLKeys={{ key: "AIzaSyBr2M08iZivUJTxbCBbCdWJ5bO4gEs34MA" }}
-                center={coordinates}
+                center={{lat:32.085300,
+                lng:34.781769}}
                 defaultZoom={zoom}
+                onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
                 onClick={handleClick}
+                yesIWantToUseGoogleMapApiInternals={true}
             >
-                <AnyReactComponent
-                    {...coordinates}
-                    text="🍎🍎🍎🍎🍎"
+                {/* <AnyReactComponent
+                    lat={32.089870}
+                    lng={34.880451}
+                    text="🧸"
                 />
+                <AnyReactComponent
+                    lat={32.085300}
+                    lng={34.781769}
+                    text="🧸"
+                />
+                <AnyReactComponent
+                    lat={31.768318}
+                    lng={35.213711}
+                    text="🧸"
+                /> */}
             </GoogleMapReact>
         </div>
     );

@@ -10,8 +10,6 @@ import { ToyEdit } from "./pages/ToyEdit.jsx"
 import { AppHeader } from "./cmps/AppHeader.jsx"
 import { store } from './store/store'
 import './assets/style/main.css'
-import { MyChart } from "./cmps/MyChart.jsx"
-import { GoogleMap } from "./cmps/GoogleMap.jsx"
 
 export  function App() {
   return (
@@ -19,8 +17,6 @@ export  function App() {
       <Router>
         <section className="main-layout app">
           <AppHeader />
-       
-         {/* <GoogleMap/> */}
           <main>
             <Routes>
               <Route element={<Home />} path="/" />

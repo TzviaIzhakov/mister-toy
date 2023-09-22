@@ -1,9 +1,12 @@
+import { GoogleMap } from "../cmps/GoogleMap";
+
 export function About() {
   return (
     <section
       className="about">
       <h1>About Page</h1>
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non quam, minima error natus nulla ex!</p>
+      <p>Visit our Stores 🧸</p>
+      <GoogleMap/>
     </section>
   );
 }
