@@ -20,6 +20,27 @@
     align-items: center;
 }
 
+
+.grid {
+    display: grid;
+}
+
+.grid.align-center {
+    align-items: center;
+}
+  
+  .grid.space-between {
+    justify-content: space-between;
+}
+  
+  .grid.align-center {
+    align-items: center;
+}
+
+  .grid.flow-column {
+    grid-auto-flow: column;
+}
+
 /* text helpers */
 
 .colored-text {

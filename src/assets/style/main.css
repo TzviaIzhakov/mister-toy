@@ -1,15 +1,15 @@
 /* Setup */
-@import 'setup/vars.css';
-@import 'setup/typography.css';
+@import 'setup/vars.scss';
+@import 'setup/typography.scss';
 
 /* Base */
 @import 'base/base.css';
 @import 'base/helpers.css';
-@import 'base/layout.css';
+@import 'base/layout.scss';
 @import 'base/forms.css';
 
 /* Components */
-@import 'cmps/AppHeader.css';
+@import 'cmps/AppHeader.scss';
 @import 'cmps/ToggleBtn.css';
 @import 'cmps/UserMsg.css';
 
@@ -17,4 +17,3 @@
 @import 'cmps/CarList.css';
 @import 'cmps/CarPreview.css';
 
-@import 'cmps/ShoppingCart.css';

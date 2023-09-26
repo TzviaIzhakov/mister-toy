@@ -1,0 +1,29 @@
+.main-layout {
+  display: grid;
+  grid-template-columns: 20px 1fr 20px;
+
+  >*.full {
+      grid-column: 1 / -1;
+  }
+
+  >*:not(.full) {
+      grid-column: 2;
+      // display: grid;
+      // grid-auto-flow: dense;
+      // grid-template-columns: repeat(6, 1fr);
+  }
+  }
+.container {
+  max-width: 800px;
+  padding: 1em;
+  margin: auto;
+}
+
+footer {
+  background-color: var(--clr1);
+  color: var(--clr1bg);
+  padding: 1em;
+  text-align: center;
+}
+
+
