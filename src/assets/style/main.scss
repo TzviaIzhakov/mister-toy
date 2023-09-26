@@ -1,19 +1,21 @@
 /* Setup */
 @import 'setup/vars.scss';
 @import 'setup/typography.scss';
+@import 'setup/functions.scss';
 
 /* Base */
-@import 'base/base.css';
-@import 'base/helpers.css';
+@import 'base/base.scss';
+@import 'base/helpers.scss';
 @import 'base/layout.scss';
 @import 'base/forms.css';
 
 /* Components */
 @import 'cmps/AppHeader.scss';
-@import 'cmps/ToggleBtn.css';
+
+
 @import 'cmps/UserMsg.css';
 
-@import 'cmps/CarFilter.css';
+@import 'cmps/ToyFilter.scss';
 @import 'cmps/CarList.css';
 @import 'cmps/CarPreview.css';
 

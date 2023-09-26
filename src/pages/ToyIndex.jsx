@@ -47,7 +47,6 @@ export function ToyIndex() {
 
     return (
         <div>
-            <h3>Toys App</h3>
             <main>
                 <button><Link to="/toy/edit">Add Toy</Link></button>
                 <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />

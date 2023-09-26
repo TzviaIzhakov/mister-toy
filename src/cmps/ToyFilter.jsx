@@ -47,29 +47,19 @@ export function ToyFilter({ filterBy, onSetFilter }) {
 
     return (
 
-        <section className="car-filter full main-layout">
-            <h2>Toys Filter</h2>
-            <section>
-            <form >
-                <label htmlFor="name">Name:</label>
+        <section className="toy-filter main-layout">
+            {/* <section> */}
+            <form  className='form-filter grid'>
                 <input type="text"
                     id="name"
                     name="name"
-                    placeholder="By name"
+                    placeholder="Search toys by name"
                     value={filterByToEdit.name}
                     onChange={handleChange}
-                />
-
-                {/* <label htmlFor="inStock"> By Stock:</label> */}
-                {/* <input type="checkbox"
-                    id="inStock"
-                    name="inStock"
-                    value={filterByToEdit.inStock}
-                    onChange={handleChange}
-                /> */}
+                    className='input-filter-name'                />
                 
                   <FormControl fullWidth>
-                    <InputLabel id="inStock">By Stock:</InputLabel>
+                    <InputLabel id="inStock">Search toys by stock</InputLabel>
                     <SelectOPt
                     labelId="inStock"
                     id="inStock"
@@ -84,18 +74,13 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                   </SelectOPt>
                 </FormControl>
 
-                <label htmlFor="labels">By Labels:</label>
-
-                {/* <select name="labels" id="labels" onChange={handleChange}>
-                    <option value="">Select labels</option>
-                  {toyService.getLabels().map((l,i)=><option key={i} value={l}>{l}</option>)}
-                </select> */}
-
-                 <Select defaultValue={selectedOption}  options={options.current[0]} isMulti onChange={handleChangeForLabels}
+                <div>
+                <Select defaultValue={selectedOption}  options={options.current[0]} isMulti onChange={handleChangeForLabels} className="custom-select"
                 />
+                </div>
+                 
 
             </form>
-            </section>
         </section>
     )
 }
