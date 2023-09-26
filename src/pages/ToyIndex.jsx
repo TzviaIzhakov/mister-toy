@@ -48,8 +48,11 @@ export function ToyIndex() {
     return (
         <div>
             <main>
-                <button><Link to="/toy/edit">Add Toy</Link></button>
                 <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
+
+                <div className='add-toy flex align-center justify-center'>
+                <button className='btn'><Link to="/toy/edit">Add Toy</Link></button>
+                </div>
 
                 {!isLoading &&
                 <section>

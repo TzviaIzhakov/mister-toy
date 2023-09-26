@@ -6,11 +6,12 @@ export function ToyList({ toys, onRemoveToy}) {
         <ul className="toy-list clean-list flex" style={{flexWrap: 'wrap',
             justifyContent: 'space-between'}}>
             {toys.map(toy =>
-                <li className="toy-preview" key={toy._id} style={{backgroundColor:'antiquewhite', marginBottom:'20px', padding:'10px'}}>
+                <li className="toy-preview" key={toy._id}>
                     <ToyPreview toy={toy} />
                     <div>
-                        <button onClick={() => onRemoveToy(toy._id)}>x</button>
-                        <button><Link to={`/toy/edit/${toy._id}`}>Edit</Link></button>
+                        <button onClick={() => onRemoveToy(toy._id)} className="btn">Remove</button>
+                        <button className="btn"><Link to={`/toy/edit/${toy._id}`}>Edit</Link></button>
+                        <button className="btn"><Link to={`/toy/${toy._id}`}>Details</Link></button>
                     </div>
 
                 </li>

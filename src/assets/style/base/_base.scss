@@ -8,7 +8,6 @@ html {
 
 body {
   margin: 0;
-  color: var(--gray3);
 }
 
 h1,
@@ -31,6 +30,9 @@ a {
 }
 
 
+.btn {
+  @include btn;
+}
 
 /* Dont stretch my Media */
 img,
