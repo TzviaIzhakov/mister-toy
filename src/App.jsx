@@ -9,7 +9,7 @@ import { ToyIndex } from "./pages/ToyIndex.jsx"
 import { ToyEdit } from "./pages/ToyEdit.jsx"
 import { AppHeader } from "./cmps/AppHeader.jsx"
 import { store } from './store/store'
-import './assets/style/main.css'
+import './assets/style/main.scss'
 
 import { useEffect, useState } from "react"
 
