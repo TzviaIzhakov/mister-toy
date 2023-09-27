@@ -71,7 +71,7 @@ export function ToyEdit() {
   const {name,price,inStock, labels} = toy;
 // console.log(labels,"pp");
     return (
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className="toy-edit">
         <input
           placeholder="Please enter your toy name"
           onChange={handleChange}
@@ -94,7 +94,7 @@ export function ToyEdit() {
 
           <LabelSelector labels={toyService.getLabels()} onLabelChange={onLabelChange} selectedLabelsProp={labels}/>
 
-          <button>Send</button>
+          <button className="btn send">Send</button>
       </form>
     );
     

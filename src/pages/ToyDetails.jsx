@@ -27,12 +27,12 @@ export function ToyDetails() {
     return (
         <section className="toy-details">
            <h4>{toy.name}</h4>
-            <h1>🧸</h1>
-            <p>Price: <span>${toy.price.toLocaleString()}</span></p>
-            <p>Is in Stock?: <span>{toy.inStock ? 'yes' : 'no'}</span></p>
-            <p>labels: {toy.labels.map(l=><span>{l}</span>)}</p>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis aliquid est, doloremque sit quos ab?</p>
-            <Link to="/toy">Back</Link>
+            <div><img src={toy.imgUrl} alt="" /></div>
+            <p><span>${toy.price.toLocaleString()}</span></p>
+            <p>{toy.inStock ? 'In Stock' : 'Not In Stock'}</p>
+            <p className="labels-container"><h1>labels</h1>{toy.labels.map(l=><span className="label">{l}</span>)}</p>
+            <p >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis aliquid est, doloremque sit quos ab?</p>
+            <button className="btn"><Link to="/toy">Back</Link></button>
         </section>
     )
 }

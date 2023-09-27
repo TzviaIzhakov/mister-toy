@@ -27,7 +27,7 @@ export  function App() {
  
           <AppHeader />
         
-          <main>
+          <main style={{position:"relative"}}>
             <Routes>
               <Route element={<Home />} path="/" />
               <Route element={<About />} path="/about" />

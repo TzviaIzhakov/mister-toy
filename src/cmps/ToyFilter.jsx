@@ -45,6 +45,13 @@ export function ToyFilter({ filterBy, onSetFilter }) {
         return [labels.map(labelFromService=>({value: labelFromService.toLowerCase(), label:labelFromService}))]
       }
 
+      const customStyles = {
+        control: base => ({
+          ...base,
+          height: 35,
+          minHeight: 35
+        })
+      };
     return (
 
         <section className="toy-filter main-layout">
@@ -75,8 +82,13 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                 </FormControl>
 
                 <div>
+                 
                 <Select defaultValue={selectedOption}  options={options.current[0]} isMulti onChange={handleChangeForLabels} className="custom-select"
-                />
+                styles={{ control: base => ({
+                  ...base,
+                  height: 57,
+                  minHeight: 57
+                })}}/>
                 </div>
                  
 

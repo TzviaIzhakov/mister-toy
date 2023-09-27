@@ -1,6 +1,5 @@
 /* Setup */
 @import 'setup/vars';
-@import 'setup/typography.scss';
 @import 'setup/functions.scss';
 @import 'setup/_mixins.scss';
 
@@ -17,6 +16,8 @@
 @import 'cmps/UserMsg.css';
 
 @import 'cmps/ToyFilter.scss';
-@import 'cmps/CarList.css';
 @import 'cmps/_ToyPreview.scss';
+@import 'cmps/_ToyDetails.scss';
+@import 'cmps/_ToyEdit.scss';
 
+@import 'setup/_typography.scss';

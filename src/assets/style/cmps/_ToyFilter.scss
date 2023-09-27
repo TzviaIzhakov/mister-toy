@@ -4,6 +4,7 @@
   border-style: none;
   padding: em(15px);
   box-shadow: 1px 4px 8px rgba(92, 92, 92, 0.55);
+  margin-top: em(50px);
    .form-filter{
     grid-template-columns: repeat(3,1fr);
     gap: em(30px);
@@ -13,10 +14,6 @@
         padding-left: em(13px);
         line-height: 23px;
         font-size: 1rem;
-    }
-    .css-w9q2zk-Input2{
-        padding: em(14px);
-        font-family: Robotto;
     }
    }
 }

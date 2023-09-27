@@ -1,0 +1,23 @@
+.toy-details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    translate: 50% 8%;
+    box-shadow: 1px 4px 8px rgba(92, 92, 92, 0.55);
+    padding: 20px;
+    img{
+        width: 6em;
+    }
+    // .labels-container{
+    //     .label{
+    //         text-align: center;
+    //     }
+    // }
+    p{
+     text-align: center;
+    }
+}
