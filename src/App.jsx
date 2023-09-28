@@ -8,17 +8,13 @@ import { ToyDetails } from "./pages/ToyDetails.jsx"
 import { ToyIndex } from "./pages/ToyIndex.jsx"
 import { ToyEdit } from "./pages/ToyEdit.jsx"
 import { AppHeader } from "./cmps/AppHeader.jsx"
+import { DashBoard } from "./cmps/DashBoard.jsx"
 import { store } from './store/store'
 import './assets/style/main.scss'
 
 import { useEffect, useState } from "react"
 
 export  function App() {
-
-  // const handleChange = (ev) => {
-  //   // setAge(ev.target.value);
-  //   setFilter(prev=>({...prev,[ev.target.name]:ev.target.value}))
-  // };
 
   return (
     <Provider store={store}>
@@ -31,6 +27,7 @@ export  function App() {
             <Routes>
               <Route element={<Home />} path="/" />
               <Route element={<About />} path="/about" />
+              <Route element={<DashBoard />} path="/dashboard" />
               <Route element={<ToyDetails />} path="/toy/:toyId" />
               <Route element={<ToyEdit />} path="/toy/edit" />
               <Route element={<ToyEdit />} path="/toy/edit/:toyId" />
