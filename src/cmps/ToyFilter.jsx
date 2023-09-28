@@ -42,16 +42,9 @@ export function ToyFilter({ filterBy, onSetFilter }) {
 
       function getOptions(){
         let labels = toyService.getLabels();
-        return [labels.map(labelFromService=>({value: labelFromService.toLowerCase(), label:labelFromService}))]
+        return [labels.map(labelFromService=>({value: labelFromService, label:labelFromService}))]
       }
 
-      const customStyles = {
-        control: base => ({
-          ...base,
-          height: 35,
-          minHeight: 35
-        })
-      };
     return (
 
         <section className="toy-filter main-layout">
@@ -80,7 +73,6 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                     <MenuItem value={false}>Not In Stock</MenuItem>
                   </SelectOPt>
                 </FormControl>
-
                 <div>
                  
                 <Select defaultValue={selectedOption}  options={options.current[0]} isMulti onChange={handleChangeForLabels} className="custom-select"

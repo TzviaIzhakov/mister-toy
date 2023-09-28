@@ -1,7 +1,7 @@
-import { storageService } from './async-storage.service.js';
+// import { storageService } from './async-storage.service.js';
 import { httpService } from './http.service.js'
 
-const STORAGE_KEY = 'toyDB';
+// const STORAGE_KEY = 'toyDB';
 const BASE_URL = 'toy/'
 
 const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle',
@@ -60,19 +60,31 @@ function getEmptyToy() {
   };
 }
 
-function getPriceByLabel(label) {
-  toyService.query({})
-  .then(toys => {
-   toys = toys.filter(toy=>toy.labels.includes(label))
+async function getPriceByLabel(label) {
+  try {
+    const toys = await toyService.query({})
+    toys = toys.filter(toy=>toy.labels.includes(label))
    let sum = toys.reduce((acc,toy)=>{
     return acc+toy.price
    },0)
    return sum/toys.length
-  })
-  .catch(err => {
-      console.log('toy action -> Cannot load toys', err)
+  } catch (err) {
+    console.log('toy action -> Cannot load toys', err)
       throw err
-  })
+  }
+ 
+  // toyService.query({})
+  // .then(toys => {
+  //  toys = toys.filter(toy=>toy.labels.includes(label))
+  //  let sum = toys.reduce((acc,toy)=>{
+  //   return acc+toy.price
+  //  },0)
+  //  return sum/toys.length
+  // })
+  // .catch(err => {
+  //     console.log('toy action -> Cannot load toys', err)
+  //     throw err
+  // })
 }
 
 // TEST DATA

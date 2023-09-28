@@ -6,10 +6,9 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 import { SET_FILTER_BY } from '../store/reducers/toy.reducer.js'
 import { ToyList } from '../cmps/ToyList.jsx'
-import { loadInitalToys, loadToys, removeToyOptimistic} from '../store/actions/toy.actions.js'
+import {loadToys, removeToyOptimistic} from '../store/actions/toy.actions.js'
 import { ToyFilter } from '../cmps/ToyFilter.jsx'
-import { toyService } from '../services/toy.service.js'
-import { MyChart } from '../cmps/MyChart.jsx'
+
 
 export function ToyIndex() {
 
@@ -60,11 +59,7 @@ export function ToyIndex() {
                     toys={toys}
                     onRemoveToy={onRemoveToy}
                 />
-                {/* <div style={{width:'14em'}}> */}
-                  {/* <MyChart/> */}
-                {/* </div> */}
                 </section> 
-               
                 }
 
                 {isLoading && <div>Loading...</div>}
