@@ -5,7 +5,7 @@ import { store } from "../store.js";
 export function loadToys() {
     const { filterBy } = store.getState().toyModule
     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
-    console.log(filterBy,"oo");
+    // console.log(filterBy,"oo");
     return toyService.query(filterBy)
         .then(toys => {
             store.dispatch({ type: SET_TOYS, toys })

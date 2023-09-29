@@ -11,6 +11,7 @@ export function login(credentials) {
         })
         .catch(err => {
             console.log('user actions -> Cannot login', err)
+            
             throw err
         })
 }

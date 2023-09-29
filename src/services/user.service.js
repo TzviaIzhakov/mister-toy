@@ -62,7 +62,8 @@ function getLoggedinUser() {
 }
 
 function _setLoggedinUser(user) {
-    const userToSave = { _id: user._id, fullname: user.fullname, balance: user.balance }
+    console.log(user.isAdmin, "user");
+    const userToSave = { _id: user._id, fullname: user.fullname, balance: user.balance,isAdmin: user.isAdmin || false }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(userToSave))
     return userToSave
 }

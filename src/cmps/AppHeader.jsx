@@ -5,6 +5,7 @@ import logoToyUrl from '../assets/img/toy-logo.png'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { logout } from '../store/actions/user.actions.js'
 import { LoginSignup } from './LoginSignup.jsx'
+import { UserMsg } from './UserMsg.jsx'
 
 export function AppHeader() {
     const user = useSelector(storeState => storeState.userModule.loggedinUser)
@@ -45,7 +46,7 @@ export function AppHeader() {
             {!user && <section className="user-info">
                 <LoginSignup />
             </section>}
-
+            <UserMsg/>
             </nav>
         </header>
     )

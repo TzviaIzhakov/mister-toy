@@ -1,5 +1,5 @@
 .user-msg {
-    background-color: lightgray;
+    background-color: blue;
     padding: .2em .5em;
     position: fixed;
     bottom: 0;
@@ -9,11 +9,11 @@
 }
 
 .user-msg.success {
-    background-color: var(--clr1);
+    background-color: pink;
 }
 
 .user-msg.error {
-    background-color: var(--clr2);
+    background-color: gray;
 }
 
 .user-msg button {

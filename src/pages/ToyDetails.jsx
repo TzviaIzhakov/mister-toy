@@ -32,7 +32,7 @@ export function ToyDetails() {
             <p>{toy.inStock ? 'In Stock' : 'Not In Stock'}</p>
             <p className="labels-container"><h1>labels</h1>{toy.labels.map(l=><span className="label">{l}</span>)}</p>
             <p >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis aliquid est, doloremque sit quos ab?</p>
-            <button className="btn"><Link to="/toy">Back</Link></button>
+            <Link to="/toy" className="btn">Back</Link>
         </section>
     )
 }
