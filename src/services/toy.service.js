@@ -28,6 +28,7 @@ function getById(toyId) {
 }
 
 function remove(toyId) {
+  // console.log(toyId,"toyId");
   return httpService.delete(BASE_URL + toyId)
 }
 

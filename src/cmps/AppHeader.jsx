@@ -1,6 +1,27 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
 import logoToyUrl from '../assets/img/toy-logo.png'
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
+import { logout } from '../store/actions/user.actions.js'
+import { LoginSignup } from './LoginSignup.jsx'
+
 export function AppHeader() {
+    const user = useSelector(storeState => storeState.userModule.loggedinUser)
+
+    const navigate = useNavigate();
+
+    function onLogout() {
+        logout()
+            .then(() => {
+                showSuccessMsg('Logout successfully')
+                navigate('/');
+            })
+            .catch(err => {
+                console.log('err:', err)
+                showErrorMsg('Cannot logout')
+            })
+    }
 
     return (
         <header className="app-header main-layout full">
@@ -15,6 +36,16 @@ export function AppHeader() {
             <li> <NavLink to="/dashboard">DashBoard</NavLink> </li>
             </ul>
                
+            {user && <section className="user-info">
+                <p>
+                    {user.fullname} <span>${user.balance}</span>
+                </p>
+                <button onClick={onLogout}>Logout</button>
+            </section>}
+            {!user && <section className="user-info">
+                <LoginSignup />
+            </section>}
+
             </nav>
         </header>
     )

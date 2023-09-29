@@ -2,6 +2,7 @@ import { toyService } from "../../services/toy.service.js"
 
 export const SET_TOYS = 'SET_TOYS'
 export const REMOVE_TOY = 'REMOVE_TOY'
+export const CLEAR_TOYS = 'CLEAR_TOYS'
 
 export const ADD_TOY = 'ADD_TOY'
 export const UPDATE_TOY = 'UPDATE_TOY'
@@ -54,6 +55,9 @@ export function toyReducer(state = initialState, action = {}) {
 
         case SET_TOYS_INITIAL:
             return { ...state, toysInitial: action.toys}
+        
+        case CLEAR_TOYS:
+            return { ...state, toys: [] };
         default:
             return state;
     }

@@ -1,5 +1,5 @@
 import {toyService } from "../../services/toy.service.js";
-import { ADD_TOY, REMOVE_TOY, SET_TOYS, SET_IS_LOADING, UPDATE_TOY, SET_TOYS_INITIAL } from "../reducers/toy.reducer.js";
+import { ADD_TOY, REMOVE_TOY, SET_TOYS, SET_IS_LOADING, UPDATE_TOY, SET_TOYS_INITIAL, TOY_UNDO } from "../reducers/toy.reducer.js";
 import { store } from "../store.js";
 
 export function loadToys() {
@@ -63,7 +63,7 @@ export function removeToyOptimistic(toyId) {
     store.dispatch({ type: REMOVE_TOY, toyId })
     return toyService.remove(toyId)
         .catch(err => {
-            store.dispatch({ type: CAR_UNDO })
+            store.dispatch({ type: TOY_UNDO })
             console.log('car action -> Cannot remove car', err)
             throw err
         })
