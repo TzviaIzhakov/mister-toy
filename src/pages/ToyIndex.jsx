@@ -29,15 +29,14 @@ export function ToyIndex() {
     }, [filterBy])
 
 
-    function onRemoveToy(toyId) {
-        removeToyOptimistic(toyId)
-            .then(() => {
-                showSuccessMsg('Car removed')
-            })
-            .catch(err => {
-                console.log('Cannot remove car', err)
-                showErrorMsg('Cannot remove car')
-            })
+    async function onRemoveToy(toyId) {
+        try {
+            await removeToyOptimistic(toyId)
+            showSuccessMsg('Car removed')
+        } catch (err) {
+            console.log('Cannot remove car', err)
+            showErrorMsg('Cannot remove car')
+        }
     }
 
     function onSetFilter(filterBy) {

@@ -25,13 +25,11 @@ export function ToyDetails() {
     }
 
     function handleChange({ target }) {
-        // const field = target.name;
         let value = target.value;
-        // setToy((prevToy) => ({ ...prevToy, msgs: [...(prevToy.msgs || []), {...toy.msgs, [field]: value} ]}));
         setNewMessage(value); 
       }
 
-    function onSubmit(e) {
+   function onSubmit(e) {
         e.preventDefault(); 
         setToy((prevToy) => ({
             ...prevToy,
@@ -39,7 +37,7 @@ export function ToyDetails() {
         }));
         setNewMessage("");
 
-        toyService.addMsg(toy._id,{txt: newMessage}).then(msg=>console.log(msg))
+        toyService.addMsg(toy._id,{txt: newMessage})
     }
 
     if (!toy) return <div>Loading...</div>
