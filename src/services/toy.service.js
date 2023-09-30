@@ -15,7 +15,8 @@ export const toyService = {
   getEmptyToy,
   getLabels,
   getDefaultFilter,
-  getPriceByLabel
+  getPriceByLabel,
+  addMsg
 };
 
 function query(filterBy) {
@@ -32,7 +33,13 @@ function remove(toyId) {
   return httpService.delete(BASE_URL + toyId)
 }
 
+function addMsg(toyId,msg) {
+  // console.log(toyId,"toyId");
+  return httpService.post(BASE_URL + toyId + '/msg', msg)
+}
+
 function save(toy) {
+  console.log(toy,"toy in save");
   if (toy._id) {
     return httpService.put(BASE_URL, toy)
   } else {
@@ -58,6 +65,7 @@ function getEmptyToy() {
     labels: [],
     createdAt: Date.now(),
     inStock: false,
+    msgs:[]
   };
 }
 

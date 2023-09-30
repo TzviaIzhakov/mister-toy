@@ -33,7 +33,7 @@ function login({ username, password }) {
 }
 
 function signup({ username, password, fullname }) {
-    const user = { username, password, fullname, balance: 10000 }
+    const user = { username, password, fullname, balance: 10000}
     return httpService.post(BASE_URL + 'signup', user)
         .then(user => {
             if (user) return _setLoggedinUser(user)
@@ -62,8 +62,8 @@ function getLoggedinUser() {
 }
 
 function _setLoggedinUser(user) {
-    console.log(user.isAdmin, "user");
-    const userToSave = { _id: user._id, fullname: user.fullname, balance: user.balance,isAdmin: user.isAdmin || false }
+    // console.log(user.isAdmin, "user");
+    const userToSave = { _id: user._id, fullname: user.fullname, balance: user.balance,isAdmin: user.isAdmin || false, msgs:[] }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(userToSave))
     return userToSave
 }

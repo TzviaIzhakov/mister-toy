@@ -6,6 +6,7 @@ import { showErrorMsg } from "../services/event-bus.service.js"
 
 export function ToyDetails() {
     const [toy, setToy] = useState(null)
+    const [newMessage, setNewMessage] = useState("");
     const { toyId } = useParams()
     const navigate = useNavigate()
 
@@ -15,12 +16,30 @@ export function ToyDetails() {
 
     function loadToy() {
         toyService.getById(toyId)
-            .then((car) => setToy(car))
+            .then((toy) => setToy(toy))
             .catch((err) => {
                 console.log('Had issues in car details', err)
                 showErrorMsg('Cannot load car')
-                navigate('/car')
+                navigate('/toy')
             })
+    }
+
+    function handleChange({ target }) {
+        // const field = target.name;
+        let value = target.value;
+        // setToy((prevToy) => ({ ...prevToy, msgs: [...(prevToy.msgs || []), {...toy.msgs, [field]: value} ]}));
+        setNewMessage(value); 
+      }
+
+    function onSubmit(e) {
+        e.preventDefault(); 
+        setToy((prevToy) => ({
+            ...prevToy,
+            msgs: [...(prevToy.msgs || []), { ...toy.msgs, txt: newMessage } ],
+        }));
+        setNewMessage("");
+
+        toyService.addMsg(toy._id,{txt: newMessage}).then(msg=>console.log(msg))
     }
 
     if (!toy) return <div>Loading...</div>
@@ -30,8 +49,14 @@ export function ToyDetails() {
             <div><img src={toy.imgUrl} alt="" /></div>
             <p><span>${toy.price.toLocaleString()}</span></p>
             <p>{toy.inStock ? 'In Stock' : 'Not In Stock'}</p>
-            <p className="labels-container"><h1>labels</h1>{toy.labels.map(l=><span className="label">{l}</span>)}</p>
+            <p className="labels-container"><p>labels</p>{toy.labels.map(l=><span className="label" key={l}>{l}</span>)}</p>
             <p >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis aliquid est, doloremque sit quos ab?</p>
+            <form onSubmit={onSubmit}>
+                <input type="text" onChange={handleChange} name="txt" placeholder="enter your msgs"/>
+            </form>
+            {toy.msgs.length ? <ul>
+                {toy.msgs.map((m,i)=><li key={i}>{m.txt}</li>)}
+                </ul> : <div>no msgs to show</div>}
             <Link to="/toy" className="btn">Back</Link>
         </section>
     )

@@ -70,6 +70,7 @@ export function removeToyOptimistic(toyId) {
 }
 
 export function saveToy(toy) {
+    // console.log(toy, "kkkkkk");
     const type = toy._id ? UPDATE_TOY : ADD_TOY
     return toyService.save(toy)
         .then(toyToSave => {
