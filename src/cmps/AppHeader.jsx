@@ -12,16 +12,24 @@ export function AppHeader() {
 
     const navigate = useNavigate();
 
-    function onLogout() {
-        logout()
-            .then(() => {
-                showSuccessMsg('Logout successfully')
-                navigate('/');
-            })
-            .catch(err => {
-                console.log('err:', err)
-                showErrorMsg('Cannot logout')
-            })
+    async function onLogout() {
+        try {
+            await logout();
+            showSuccessMsg('Logout successfully')
+            navigate('/');
+        } catch (err) {
+            console.log('err:', err)
+            showErrorMsg('Cannot logout')
+        }
+        // logout()
+        //     .then(() => {
+        //         showSuccessMsg('Logout successfully')
+        //         navigate('/');
+        //     })
+        //     .catch(err => {
+        //         console.log('err:', err)
+        //         showErrorMsg('Cannot logout')
+        //     })
     }
 
     return (

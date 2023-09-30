@@ -14,14 +14,22 @@ export function ToyDetails() {
         loadToy()
     }, [toyId])
 
-    function loadToy() {
-        toyService.getById(toyId)
-            .then((toy) => setToy(toy))
-            .catch((err) => {
-                console.log('Had issues in car details', err)
-                showErrorMsg('Cannot load car')
-                navigate('/toy')
-            })
+    async function loadToy() {
+        try {
+            const toy = await toyService.getById(toyId)
+            setToy(toy)
+        } catch (err) {
+            console.log('Had issues in car details', err)
+            showErrorMsg('Cannot load car')
+            navigate('/toy')
+        }
+        // toyService.getById(toyId)
+        //     .then((toy) => setToy(toy))
+        //     .catch((err) => {
+        //         console.log('Had issues in car details', err)
+        //         showErrorMsg('Cannot load car')
+        //         navigate('/toy')
+        //     })
     }
 
     function handleChange({ target }) {

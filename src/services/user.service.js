@@ -24,37 +24,62 @@ function getById(userId) {
     return storageService.get(STORAGE_KEY, userId)
 }
 
-function login({ username, password }) {
+async function login({ username, password }) {
     // console.log(username, password);
-    return httpService.post(BASE_URL + 'login', { username, password })
-        .then(user => {
-            if (user) return _setLoggedinUser(user)
-        })
+    try {
+        const user = await httpService.post(BASE_URL + 'login', { username, password })
+        if (user) return _setLoggedinUser(user)
+    } catch (err) {
+        console.log(err);
+    }
+    // return httpService.post(BASE_URL + 'login', { username, password })
+    //     .then(user => {
+    //         if (user) return _setLoggedinUser(user)
+    //     })
 }
 
-function signup({ username, password, fullname }) {
+async function signup({ username, password, fullname }) {
     const user = { username, password, fullname, balance: 10000}
-    return httpService.post(BASE_URL + 'signup', user)
-        .then(user => {
-            if (user) return _setLoggedinUser(user)
-        })
+    try {
+        const userSignUp = await httpService.post(BASE_URL + 'signup', user)
+        if (userSignUp) return _setLoggedinUser(userSignUp)
+    } catch (err) {
+        console.log(err);
+    }
+    // return httpService.post(BASE_URL + 'signup', user)
+    //     .then(user => {
+    //         if (user) return _setLoggedinUser(user)
+    //     })
 
 }
 
-function updatebalance(diff) {
+async function updatebalance(diff) {
     if (getLoggedinUser().balance + diff < 0) return Promise.reject('No credit')
-    return httpService.put('user', { diff })
-        .then(user => {
-            _setLoggedinUser(user)
-            return user.balance
-        })
+    try {
+        const user = await httpService.put('user', { diff })
+        _setLoggedinUser(user)
+        return user.balance
+    } catch (err) {
+     console.log(err);   
+    }
+    // return httpService.put('user', { diff })
+    //     .then(user => {
+    //         _setLoggedinUser(user)
+    //         return user.balance
+    //     })
 }
 
-function logout() {
-    return httpService.post(BASE_URL + 'logout')
-        .then(() => {
-            sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN)
-        })
+async function logout() {
+    try {
+        await httpService.post(BASE_URL + 'logout')
+        sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN)
+    } catch (err) {
+        console.log(err);
+    }
+    // return httpService.post(BASE_URL + 'logout')
+    //     .then(() => {
+    //         sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN)
+    //     })
 }
 
 function getLoggedinUser() {

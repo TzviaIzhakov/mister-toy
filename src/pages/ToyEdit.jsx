@@ -13,14 +13,23 @@ export function ToyEdit() {
     if (params.toyId) loadToy()
     }, [])
 
-    function loadToy() {
-        toyService.getById(params.toyId)
-            .then(setToy)
-            .catch(err => {
-                console.log('Had issued in toy edit:', err);
-                navigate('/toy')
-                showErrorMsg('toy not found!')
-            })
+    async function loadToy() {
+      try {
+        const toy = await toyService.getById(params.toyId)
+        setToy(toy)
+      } catch (err) {
+        console.log('Had issued in toy edit:', err);
+        navigate('/toy')
+        showErrorMsg('toy not found!')
+      }
+      
+        // toyService.getById(params.toyId)
+        //     .then(setToy)
+        //     .catch(err => {
+        //         console.log('Had issued in toy edit:', err);
+        //         navigate('/toy')
+        //         showErrorMsg('toy not found!')
+        //     })
     }
 
     function handleChange({ target }) {
@@ -50,21 +59,35 @@ export function ToyEdit() {
         setToy((prevToy) => ({ ...prevToy,  labels: selectedLabels }));
     }
 
-    function onAddToy(toy) {
+    async function onAddToy(toy) {
       const toyToSave = toy;
-      return saveToy(toyToSave)
-        .then((savedToy) => {
-          showSuccessMsg(`Toy added (id: ${savedToy._id})`);
-        })
-        .catch((err) => {
+      try {
+        const savedToy = await saveToy(toyToSave);
+        showSuccessMsg(`Toy added (id: ${savedToy._id})`);
+
+      } catch (err) {
           console.log('Cannot add toy', err);
           showErrorMsg('Cannot add toy');
-        });
+      }
+      // return saveToy(toyToSave)
+      //   .then((savedToy) => {
+      //     showSuccessMsg(`Toy added (id: ${savedToy._id})`);
+      //   })
+      //   .catch((err) => {
+      //     console.log('Cannot add toy', err);
+      //     showErrorMsg('Cannot add toy');
+      //   });
     }
   
-    function onSubmit(ev) {
+    async function onSubmit(ev) {
       ev.preventDefault();
-      onAddToy(toy).then(_=> navigate('/toy')).catch(err=>console.log(err))
+      try {
+        await onAddToy(toy)
+        navigate('/toy')
+      } catch (err) {
+        console.log(err)
+      }
+      // onAddToy(toy).then(_=> navigate('/toy')).catch(err=>console.log(err))
      
     }
 
