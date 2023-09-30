@@ -29,7 +29,7 @@
 
 @mixin btn($bg: $clr2bg-dark, $clr: $clr3, $padding: em(10px) em(10px), $hover:  $clr3bg) {
   
-  display: inline-flex;
+  // display: inline-flex;
   margin-top: em(20px);
   align-items: center;
   text-decoration: none;
@@ -42,6 +42,7 @@
   transition: background-color 0.2s;
   background-color: $bg;
   color: $clr;
+  border-radius: 5px;
   &:hover {
         background-color: $hover;
   }

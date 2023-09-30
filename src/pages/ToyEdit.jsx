@@ -60,7 +60,7 @@ export function ToyEdit() {
     }
 
     async function onAddToy(toy) {
-      const toyToSave = toy;
+      const toyToSave = {...toy, imgUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyEr8UXrik0ZVbAdq_kvB0VSVJ7gaCJt6NaA&usqp=CAU'};
       try {
         const savedToy = await saveToy(toyToSave);
         showSuccessMsg(`Toy added (id: ${savedToy._id})`);
