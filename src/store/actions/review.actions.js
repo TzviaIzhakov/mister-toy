@@ -20,7 +20,6 @@ export async function loadReviews(filterBy) {
   try {
     const {loggedinUser} = store.getState().userModule
     console.log(loggedinUser);
-    // const toy = await toyService.getById(toyId)
     const reviews = await reviewService.query(filterBy)
     console.log(reviews, "revs from action");
     store.dispatch({ type: SET_REVIEWS, reviews })

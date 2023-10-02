@@ -71,7 +71,7 @@ function getEmptyToy() {
 
 async function getPriceByLabel(label) {
   try {
-    const toys = await toyService.query({})
+    let toys = await toyService.query({})
     toys = toys.filter(toy=>toy.labels.includes(label))
    let sum = toys.reduce((acc,toy)=>{
     return acc+toy.price

@@ -13,6 +13,7 @@ import { store } from './store/store'
 import './assets/style/main.scss'
 
 import { useEffect, useState } from "react"
+import { UserProfile } from "./pages/UserProfile.jsx"
 
 export  function App() {
 
@@ -32,6 +33,7 @@ export  function App() {
               <Route element={<ToyEdit />} path="/toy/edit" />
               <Route element={<ToyEdit />} path="/toy/edit/:toyId" />
               <Route element={<ToyIndex />} path="/toy" />
+              <Route element={<UserProfile />} path="/user/:id" />
             </Routes>
           </main>
         </section>

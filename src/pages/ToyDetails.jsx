@@ -5,6 +5,7 @@ import { toyService } from "../services/toy.service.js"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 import { loadReviews, addReview} from '../store/actions/review.actions.js'
 import { useSelector } from "react-redux"
+import { ChatApp } from "../cmps/Chat.jsx"
 
 export function ToyDetails() {
     const [toy, setToy] = useState(null)
@@ -13,7 +14,7 @@ export function ToyDetails() {
     const [reviewToEdit, setReviewToEdit] = useState({ txt: ''})
     const { toyId } = useParams()
     const navigate = useNavigate()
-
+    // const navigate = useNavigate();
     useEffect(() => {
         const loadData = async () => {
             try {
@@ -76,6 +77,7 @@ export function ToyDetails() {
           await addReview(reviewToEdit)
           showSuccessMsg('Review added')
           setReviewToEdit({ txt: ''})
+          await loadReviews({ toyId })
         } catch (err) {
             console.log(err);
           showErrorMsg('Cannot add review')
@@ -106,7 +108,7 @@ export function ToyDetails() {
                     onChange={handleChangeForReview}
                     value={reviewToEdit.txt}
                 ></textarea>
-                <button>Add</button>
+                <button className="btn">Add</button>
                 </form>    
 
             {reviews && <ul className="review-list">
@@ -115,17 +117,21 @@ export function ToyDetails() {
             <li key={review._id}>
                 <h3>{review.txt}</h3>
                 <p>
-                By:
+               
                 {/* <Link to={`/user/${review.byUser._id}`}>
                     {review.byUser.fullname}
                 </Link> */}
                {review.byUser && review.byUser.fullname && <span>
-                {review.byUser.fullname}
+                By:{review.byUser.fullname}
                 </span>} 
                 </p>
             </li>
             ))}
         </ul>}
+
+            <div>
+            <ChatApp toy={toy} />
+            </div>
 
             <Link to="/toy" className="btn">Back</Link>
         </section>
